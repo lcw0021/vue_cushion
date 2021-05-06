@@ -1,0 +1,58 @@
+{
+    "@context": "https://www.w3.org/2019/wot/td/v1",
+    "id": "https://schema.iot.webizing.org/td/cushion",
+    "name": "Mattress",
+    "names": "",
+    "title": "Mattress Sensor",
+    "events": {
+        "pressure": {
+                "data": {
+                    "type": "object",
+                    "items" : {
+                        "type" : "object",
+                        "properties": {
+                            "time": {
+                                "type": "string"
+                            },
+                            "points": {
+                                "type": "array",
+                                "minItems": 435,
+                                "maxItems": 435,
+                                "items" : {
+                                    "type" : "object",
+                                    "properties": {
+                                        "current": {"type": "number"},
+                                        "coord": {"type": "object",
+                                            "properties": {
+                                                "x": {"type": "number"},
+                                                "y": {"type": "number"}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "forms": [
+                    {
+                        "href": "mqtt://192.168.1.187:1883/mattress-id",
+                        "contentType" : "text/json",
+                        "op" : "subscribeevent"
+                    }
+                ]
+        }
+    },
+    "securityDefinitions": {
+        "nosec_sc": {
+            "scheme": "nosec",
+            "description": "no security"
+        }
+    },
+    "security": [
+        "nosec_sc"
+    ],
+    "version": {
+        "instance": "0.0.1"
+    }
+}
